@@ -18,14 +18,16 @@ from django.urls import path, include
 
 from accounts.views import signup, show_profile
 
-from products.views import product_list
+from products.views import product_list, product_detail
 
 from django.views.static import serve
 from django.conf import settings
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', product_list, name="home"),
+    path("admin/", admin.site.urls),
+    path("", product_list, name="home"),
+    path("product/<id>", product_detail, name="product_detail"),
+    
     path("accounts/", include("django.contrib.auth.urls")),
     
     path("accounts/signup/", signup, name="signup"),
