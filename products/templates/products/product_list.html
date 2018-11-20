@@ -14,8 +14,12 @@
                                 <h4><a href="{% url "product_detail" id=product.id %}">{{product.name}}</a></h4>
                                 <h6>{{product.brand}}</h6>
                                     
-                                <form method="POST" action="#">
+                                <form method="POST" action="{% url "add_to_cart" %}">
+                                    
+                                    {% csrf_token %}
+                                    
                                     <input type="number" name="quantity" value="1"/>
+                                    <input type="hidden" name="product" value="{{ product.id }}"/>
                                     <input class="btn btn-primary" type="submit" value="Add to cart"/>
                                 </form>
                                     
