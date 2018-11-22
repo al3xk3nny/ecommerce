@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'accounts',
     'django_forms_bootstrap',
     'cart',
+    'checkout',
 ]
 
 MIDDLEWARE = [
@@ -124,3 +125,8 @@ USE_TZ = True
 
 LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = "/"
+
+STRIPE_PUBLISHABLE_KEY = os.environ.get("STRIPE_PUBLISHABLE_KEY")
+STRIPE_SECRET_KEY = os.environ.get("STRIPE_SECRET_KEY")
+
+MESSAGE_STORAGE = "django.contrib.messages.storage.session.SessionStorage"
