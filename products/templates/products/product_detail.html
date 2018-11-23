@@ -16,9 +16,36 @@
                         <p>{{ product.description }}</p>
                     </div>    
                 </div>
+            </div> 
+        </div>    
+        
+            <hr>
+            
+            <h2>Reviews</h2>
+            
+            {% if user.is_authenticated %}
+            <form method="POST" action="{% url 'write_reviews' product.id %}">
+                {% csrf_token %} {{ form.as_p }}
+            
+                <input type="submit" value="Submit" />
+            </form>
+            {% endif %}
+            
+            <hr>
+            
+            <div>
+                {% for review in product.reviews.all|dictsortreversed:'created_date' %}
+            
+            
+                <h3>{{ review.title }} - <i>{{ review.author }}</i></h3>
+                <p>{{ review.content }}</p>
+                {{ review.product }}
+                
+                <hr> 
+                
+                {% endfor %}
             </div>    
         
-        </div>
     </div>    
 
 {% endblock content %}

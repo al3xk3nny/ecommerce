@@ -22,6 +22,8 @@ from cart.views import add_to_cart, view_cart, remove_from_cart
 
 from checkout.views import show_checkout, submit_payment
 
+from reviews.views import write_reviews
+
 from accounts.views import signup, show_profile
 
 from django.views.static import serve
@@ -39,6 +41,8 @@ urlpatterns = [
     
     path("checkout/view/", show_checkout, name="show_checkout"),
     path("checkout/payment/", submit_payment, name="submit_payment"),
+    
+    path('reviews/add/<int:id>', write_reviews, name='write_reviews'),
     
     path("accounts/", include("django.contrib.auth.urls")),
     path("accounts/signup/", signup, name="signup"),
